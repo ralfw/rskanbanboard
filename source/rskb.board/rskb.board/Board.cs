@@ -11,7 +11,8 @@ namespace rskb.board
     {
         public Card Move_card_to_column(Card card, int destinationColumnIndex)
         {
-            throw new NotImplementedException();
+            card.ColumnIndex = destinationColumnIndex;
+            return card;
         }
     }
 }
