@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,6 +32,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="rskb.board">
+      <HintPath>..\..\..\bin\rskb.board.dll</HintPath>
+    </Reference>
+    <Reference Include="rskb.boardcontroller">
+      <HintPath>..\..\..\bin\rskb.boardcontroller.dll</HintPath>
+    </Reference>
+    <Reference Include="rskb.boardportal">
+      <HintPath>..\..\..\bin\rskb.boardportal.dll</HintPath>
+    </Reference>
+    <Reference Include="rskb.boardprovider">
+      <HintPath>..\..\..\bin\rskb.boardprovider.dll</HintPath>
+    </Reference>
     <Reference Include="rskb.contracts">
       <HintPath>..\..\..\bin.contracts\rskb.contracts.dll</HintPath>
     </Reference>

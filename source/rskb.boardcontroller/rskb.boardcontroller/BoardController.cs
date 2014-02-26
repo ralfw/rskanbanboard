@@ -23,7 +23,10 @@ namespace rskb.boardcontroller
 
         public IEnumerable<Card> Move_card(string cardId, int destinationColumnIndex)
         {
-            throw new NotImplementedException();
+            var card = _provider.LoadCard(cardId);
+            card = _board.Move_card_to_column(card, destinationColumnIndex);
+            _provider.StoreCard(card);
+            return _provider.Load_all_cards();
         }
     }
 }
