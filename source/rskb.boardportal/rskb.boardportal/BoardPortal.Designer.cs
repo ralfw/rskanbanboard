@@ -38,41 +38,57 @@
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // treeView1
+            // treeViewNext
             // 
+            this.treeViewNext.AllowDrop = true;
             this.treeViewNext.Location = new System.Drawing.Point(13, 61);
-            this.treeViewNext.Name = "treeView1";
+            this.treeViewNext.Name = "treeViewNext";
             this.treeViewNext.ShowPlusMinus = false;
             this.treeViewNext.ShowRootLines = false;
             this.treeViewNext.Size = new System.Drawing.Size(221, 380);
             this.treeViewNext.TabIndex = 0;
+            this.treeViewNext.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
+            this.treeViewNext.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView_DragDrop);
+            this.treeViewNext.DragOver += new System.Windows.Forms.DragEventHandler(this.treeView_DragOver);
             // 
-            // treeView2
+            // treeViewProgress
             // 
+            this.treeViewProgress.AllowDrop = true;
             this.treeViewProgress.Location = new System.Drawing.Point(240, 61);
-            this.treeViewProgress.Name = "treeView2";
+            this.treeViewProgress.Name = "treeViewProgress";
             this.treeViewProgress.ShowPlusMinus = false;
             this.treeViewProgress.ShowRootLines = false;
             this.treeViewProgress.Size = new System.Drawing.Size(260, 380);
             this.treeViewProgress.TabIndex = 0;
+            this.treeViewProgress.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
+            this.treeViewProgress.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView_DragDrop);
+            this.treeViewProgress.DragOver += new System.Windows.Forms.DragEventHandler(this.treeView_DragOver);
             // 
-            // treeView3
+            // treeViewQs
             // 
+            this.treeViewQs.AllowDrop = true;
             this.treeViewQs.Location = new System.Drawing.Point(506, 61);
-            this.treeViewQs.Name = "treeView3";
+            this.treeViewQs.Name = "treeViewQs";
             this.treeViewQs.ShowPlusMinus = false;
             this.treeViewQs.ShowRootLines = false;
             this.treeViewQs.Size = new System.Drawing.Size(257, 380);
             this.treeViewQs.TabIndex = 0;
+            this.treeViewQs.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
+            this.treeViewQs.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView_DragDrop);
+            this.treeViewQs.DragOver += new System.Windows.Forms.DragEventHandler(this.treeView_DragOver);
             // 
-            // treeView4
+            // treeViewDone
             // 
+            this.treeViewDone.AllowDrop = true;
             this.treeViewDone.Location = new System.Drawing.Point(769, 61);
-            this.treeViewDone.Name = "treeView4";
+            this.treeViewDone.Name = "treeViewDone";
             this.treeViewDone.ShowPlusMinus = false;
             this.treeViewDone.ShowRootLines = false;
             this.treeViewDone.Size = new System.Drawing.Size(245, 380);
             this.treeViewDone.TabIndex = 0;
+            this.treeViewDone.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
+            this.treeViewDone.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView_DragDrop);
+            this.treeViewDone.DragOver += new System.Windows.Forms.DragEventHandler(this.treeView_DragOver);
             // 
             // label1
             // 

@@ -53,5 +53,43 @@ namespace rskb.boardportal
             TreeNode addedNode = treeView.Nodes.Add(card.Text);
             addedNode.Tag = card.Id;
         }
+
+        private void treeView_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            this.DoDragDrop(e.Item, DragDropEffects.Move);
+        }
+
+        private void treeView_DragOver(object sender, DragEventArgs e)
+        {
+            // handle only tree nodes
+            if (!e.Data.GetDataPresent(typeof(TreeNode)))
+            {
+                return;
+            }
+
+            TreeNode draggedNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
+            if (draggedNode.TreeView != this.treeViewDone &&
+                draggedNode.TreeView != this.treeViewNext &&
+                draggedNode.TreeView != this.treeViewProgress &&
+                draggedNode.TreeView != this.treeViewQs)
+            {
+                return;
+            }
+
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void treeView_DragDrop(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(typeof(TreeNode)))
+            {
+                return;
+            }
+
+            TreeNode draggedNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
+            TreeView targetTreeView = sender as TreeView;
+            draggedNode.Remove();
+            targetTreeView.Nodes.Add(draggedNode);
+        }
     }
 }
