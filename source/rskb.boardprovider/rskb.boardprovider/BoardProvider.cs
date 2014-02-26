@@ -9,19 +9,21 @@ namespace rskb.boardprovider
 {
     public class BoardProvider : IBoardProvider
     {
+        private IEnumerable<Card> board = new[] { new Card() { ColumnIndex = 1, Id = "I1", Text = "A" } };
+
         public IEnumerable<Card> Load_all_cards()
         {
-            throw new NotImplementedException();
+            return this.board;
         }
 
         public Card LoadCard(string id)
         {
-            throw new NotImplementedException();
+            return board.First();
         }
 
         public void StoreCard(Card card)
         {
-            throw new NotImplementedException();
+            // nix.
         }
     }
 }
