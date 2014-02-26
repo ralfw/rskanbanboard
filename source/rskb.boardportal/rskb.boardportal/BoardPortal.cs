@@ -20,7 +20,30 @@ namespace rskb.boardportal
 
         public void Display_cards(IEnumerable<Card> cards)
         {
-            throw new NotImplementedException();
+            foreach (var card in cards)
+            {
+                if (card.ColumnIndex == 0)
+                {
+                    this.AddCardToList(card, this.treeView1);
+                }
+                else if (card.ColumnIndex == 1)
+                {
+                    this.AddCardToList(card, this.treeView2);
+                }
+                else if (card.ColumnIndex == 2)
+                {
+                    this.AddCardToList(card, this.treeView3);
+                }
+                else
+                {
+                    this.AddCardToList(card, this.treeView4);
+                }
+            }
+        }
+
+        private void AddCardToList(Card card, TreeView treeView)
+        {
+            treeView.Nodes.Add(card.Text);
         }
 
         public event Action<string, int> On_card_moved;
