@@ -18,8 +18,15 @@ namespace rskb.boardportal
             InitializeComponent();
         }
 
+        public event Action<string, int> On_card_moved;
+
         public void Display_cards(IEnumerable<Card> cards)
         {
+            if (cards == null)
+            {
+                return;
+            }
+
             foreach (var card in cards)
             {
                 if (card.ColumnIndex == 0)
@@ -45,7 +52,5 @@ namespace rskb.boardportal
         {
             treeView.Nodes.Add(card.Text);
         }
-
-        public event Action<string, int> On_card_moved;
     }
 }
