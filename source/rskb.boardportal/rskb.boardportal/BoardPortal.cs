@@ -31,26 +31,27 @@ namespace rskb.boardportal
             {
                 if (card.ColumnIndex == 0)
                 {
-                    this.AddCardToList(card, this.treeView1);
+                    this.AddCardToList(card, this.treeViewNext);
                 }
                 else if (card.ColumnIndex == 1)
                 {
-                    this.AddCardToList(card, this.treeView2);
+                    this.AddCardToList(card, this.treeViewProgress);
                 }
                 else if (card.ColumnIndex == 2)
                 {
-                    this.AddCardToList(card, this.treeView3);
+                    this.AddCardToList(card, this.treeViewQs);
                 }
                 else
                 {
-                    this.AddCardToList(card, this.treeView4);
+                    this.AddCardToList(card, this.treeViewDone);
                 }
             }
         }
 
         private void AddCardToList(Card card, TreeView treeView)
         {
-            treeView.Nodes.Add(card.Text);
+            TreeNode addedNode = treeView.Nodes.Add(card.Text);
+            addedNode.Tag = card.Id;
         }
     }
 }
