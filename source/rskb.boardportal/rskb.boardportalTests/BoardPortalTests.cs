@@ -17,12 +17,11 @@ namespace rskb.boardportal.Tests
         public void Display_cardsTest()
         {
             BoardPortal form = new BoardPortal();
-
             List<Card> cards = new List<Card>();
 
             for(int i = 0; i< 15; i++)
             {
-                Card cardToAdd = new Card() { ColumnIndex = i / 4, Id = i.ToString(), Text = "Card" + i.ToString()};
+                Card cardToAdd = new Card() { ColumnIndex = i / 4, Id = i.ToString(), Text = "Card \n wwwwwwwwwwwwww " + i.ToString()};
                 cards.Add(cardToAdd); 
             }
 
