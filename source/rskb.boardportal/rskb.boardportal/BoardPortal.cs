@@ -40,6 +40,11 @@ namespace rskb.boardportal
         public event Action<string, int> On_card_moved;
 
         /// <summary>
+        /// Occurs when a card is added.
+        /// </summary>
+        public event Action<string, int> On_new_card;
+
+        /// <summary>
         /// Displays the specified cards.
         /// </summary>
         /// <param name="cards">The cards collection.</param>
@@ -142,6 +147,62 @@ namespace rskb.boardportal
             var targetTreeView = sender as TreeView;
 
             this.On_card_moved(draggedNode.Tag.ToString(), this.treeViews.IndexOf(targetTreeView));
+        }
+
+        /// <summary>
+        /// Handles the Click event of the button1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.AddNewCard(0);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the button2 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.AddNewCard(1);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the button3 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.AddNewCard(2);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the button4 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.AddNewCard(3);
+        }
+
+        /// <summary>
+        /// Adds the new card to the concerned column
+        /// </summary>
+        /// <param name="columnIndex">Index of the column.</param>
+        private void AddNewCard(int columnIndex)
+        {
+            NewCardDialog dlg = new NewCardDialog();
+            DialogResult dlgResult = dlg.ShowDialog();
+            if (dlgResult != System.Windows.Forms.DialogResult.OK)
+            {
+                return;
+            }
+
+            this.On_new_card(dlg.Description, columnIndex);
         }
     }
 }

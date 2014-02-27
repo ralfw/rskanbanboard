@@ -6,18 +6,28 @@ using System.Threading.Tasks;
 
 namespace rsbk.boardcontroller
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using rskb.contracts;
 
-    class BoardMoc : IBoard
+    /// <summary>
+    /// The board moc.
+    /// </summary>
+    class BoardMoc : IBoard2
     {
-        public Card Move_card_to_column(Card card, int destinationColumnIndex)
+        public void Create_card(string text, int columnIndex)
         {
-            card.ColumnIndex = destinationColumnIndex;
-            return card;
+        }
+
+        public void Move_card_to_column(string cardId, int destinationColumnIndex)
+        {
         }
     }
 
-    public class BoardProviderMoc : IBoardProvider
+    /// <summary>
+    /// The board provider moc.
+    /// </summary>
+    public class BoardProviderMoc : IBoardProvider2
     {
         List<Card> cards = new List<Card>();
 
@@ -31,23 +41,5 @@ namespace rsbk.boardcontroller
         {
             return cards;
         }
-
-        public Card LoadCard(string id)
-        {
-            return cards.First(c => c.Id == id);
-        }
-
-        public void StoreCard(Card card)
-        {
-        }
-    }
-
-    public class BoardPortalMoc : IBoardPortal
-    {
-        public void Display_cards(IEnumerable<Card> cards)
-        {
-        }
-
-        public event Action<string, int> On_card_moved;
     }
 }
