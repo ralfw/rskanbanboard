@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace rskb.contracts
 {
     public interface IBoardController
     {
-        IEnumerable<Card> Move_card(string cardId, int destinationColumnIndex);
+        void Move_card(string cardId, int destinationColumnIndex);
+        void Create_card(string text, int columnIndex);
+        void Refresh();
 
-        IEnumerable<Card> Create_card(string text, int columnIndex);
+        event Action<IEnumerable<Card>> On_cards_changed;
     }
 }

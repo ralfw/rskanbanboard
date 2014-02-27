@@ -9,5 +9,6 @@ namespace rskb.contracts
 
         event Action<string, int> On_card_moved;
         event Action<string, int> On_new_card;
+        event Action On_refresh;
     }
 }
