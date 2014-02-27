@@ -13,14 +13,16 @@ namespace rsbk.boardcontroller
     /// <summary>
     /// The board moc.
     /// </summary>
-    class BoardMoc : IBoard2
+    public class BoardMoc : IBoard2
     {
         public void Create_card(string text, int columnIndex)
         {
+            CardStrore.Add(new Card { ColumnIndex = columnIndex, Id = text.GetHashCode().ToString(), Text = text });
         }
 
         public void Move_card_to_column(string cardId, int destinationColumnIndex)
         {
+            CardStrore.Change(cardId, destinationColumnIndex);
         }
     }
 
@@ -29,17 +31,35 @@ namespace rsbk.boardcontroller
     /// </summary>
     public class BoardProviderMoc : IBoardProvider2
     {
-        List<Card> cards = new List<Card>();
-
         public BoardProviderMoc()
         {
-            this.cards.Add(new Card { ColumnIndex = 0, Id = "A", Text = "Die A Karte"});
-            this.cards.Add(new Card { ColumnIndex = 1, Id = "C", Text = "Die C Karte" });
+            CardStrore.Add(new Card { ColumnIndex = 0, Id = "A", Text = "Die A Karte" });
+            CardStrore.Add(new Card { ColumnIndex = 1, Id = "C", Text = "Die C Karte" });
         }
-        
+
         public IEnumerable<Card> Load_all_cards()
         {
-            return cards;
+            return CardStrore.AllCards();
+        }
+    }
+
+    public class CardStrore
+    {
+        static Dictionary<string, Card> cards = new Dictionary<string, Card>();
+
+        public static void Add(Card card)
+        {
+            cards.Add(card.Id, card);
+        }
+
+        public static IEnumerable<Card> AllCards()
+        {
+            return cards.Values;
+        }
+
+        public static void Change(string id, int columnIndex)
+        {
+            cards[id].ColumnIndex = columnIndex;
         }
     }
 }

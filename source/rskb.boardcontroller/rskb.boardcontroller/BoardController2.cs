@@ -54,7 +54,6 @@ namespace rskb.boardcontroller
         public IEnumerable<Card> Create_card(string cardId, int columnIndex)
         {
             this._board.Create_card(cardId, columnIndex);
-            this._board.Move_card_to_column(cardId, columnIndex);
             return this._provider.Load_all_cards();
         }
     }
