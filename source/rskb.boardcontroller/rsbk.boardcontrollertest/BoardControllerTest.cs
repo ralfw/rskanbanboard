@@ -5,6 +5,8 @@ using rskb.contracts;
 
 namespace rsbk.boardcontroller
 {
+    using System.Collections.Generic;
+
     [TestClass]
     public class BoardControllerTest
     {
@@ -14,11 +16,15 @@ namespace rsbk.boardcontroller
             IBoardProvider2 boardProvider = new BoardProviderMoc();
             IBoard2 board = new BoardMoc();
             var boardController = new BoardController2(board, boardProvider);
-            
+            boardController.On_cards_changed += CardStore.OnCardChanged;
+
             var cardId = "A";
             boardController.Move_card(cardId, 2);
 
-            // Assert.AreEqual(card.ColumnIndex, 2, "columIndex is incorrect");
+            var card = CardStore.AllCards().FirstOrDefault(c => c.Id == "A");
+            
+            Assert.IsNotNull(card, "card not found");
+            Assert.AreEqual(card.ColumnIndex, 2, "columIndex is incorrect");
         }
 
         [TestMethod]
@@ -27,13 +33,15 @@ namespace rsbk.boardcontroller
             IBoardProvider2 boardProvider = new BoardProviderMoc();
             IBoard2 board = new BoardMoc();
             var boardController = new BoardController2(board, boardProvider);
+            boardController.On_cards_changed += CardStore.OnCardChanged;
 
             var cardText = "A new card X";
             boardController.Create_card(cardText, 2);
-            //var card = cards.FirstOrDefault(c => c.Text == cardText);
+            
+            var card = CardStore.AllCards().FirstOrDefault(c => c.Text == cardText);
 
-            //Assert.IsNotNull(card, "card is not contained");
-            //Assert.AreEqual(card.ColumnIndex, 2, "columIndex is incorrect");
+            Assert.IsNotNull(card, "card is not contained");
+            Assert.AreEqual(card.ColumnIndex, 2, "columIndex is incorrect");
         }
     }
 }

@@ -17,12 +17,12 @@ namespace rsbk.boardcontroller
     {
         public void Create_card(string text, int columnIndex)
         {
-            CardStrore.Add(new Card { ColumnIndex = columnIndex, Id = text.GetHashCode().ToString(), Text = text });
+            CardStore.Add(new Card { ColumnIndex = columnIndex, Id = text.GetHashCode().ToString(), Text = text });
         }
 
         public void Move_card_to_column(string cardId, int destinationColumnIndex)
         {
-            CardStrore.Change(cardId, destinationColumnIndex);
+            CardStore.Change(cardId, destinationColumnIndex);
         }
     }
 
@@ -33,17 +33,30 @@ namespace rsbk.boardcontroller
     {
         public BoardProviderMoc()
         {
-            CardStrore.Add(new Card { ColumnIndex = 0, Id = "A", Text = "Die A Karte" });
-            CardStrore.Add(new Card { ColumnIndex = 1, Id = "C", Text = "Die C Karte" });
+            CardStore.Add(new Card { ColumnIndex = 0, Id = "A", Text = "Die A Karte" });
+            CardStore.Add(new Card { ColumnIndex = 1, Id = "C", Text = "Die C Karte" });
         }
 
         public IEnumerable<Card> Load_all_cards()
         {
-            return CardStrore.AllCards();
+            return CardStore.AllCards();
         }
     }
 
-    public class CardStrore
+    public class BoardPortalMoc : IBoardPortal
+    {
+        public void Display_cards(IEnumerable<Card> cards)
+        {
+        }
+
+        public event Action<string, int> On_card_moved;
+
+        public event Action<string, int> On_new_card;
+
+        public event Action On_refresh;
+    }
+
+    public class CardStore
     {
         static Dictionary<string, Card> cards = new Dictionary<string, Card>();
 
@@ -60,6 +73,10 @@ namespace rsbk.boardcontroller
         public static void Change(string id, int columnIndex)
         {
             cards[id].ColumnIndex = columnIndex;
+        }
+
+        public static void OnCardChanged(IEnumerable<Card> cards)
+        {
         }
     }
 }
