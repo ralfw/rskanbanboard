@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -10,6 +11,8 @@ namespace rskb.boardprovider
 
     public class PersistentBoardProvider : IBoardProvider
     {
+        private readonly TraceSource _ts = new TraceSource("rskb.boardprovider", SourceLevels.All);
+
         private List<Card> initData = new List<Card>()
                                           {
                                               new Card() { ColumnIndex = 0, Id = "0", Text = "A" },
@@ -38,6 +41,7 @@ namespace rskb.boardprovider
 
         public IEnumerable<Card> Load_all_cards()
         {
+            _ts.TraceInformation("Load_all_cards");
             if (!File.Exists(this.filename))
             {
                 return new List<Card>(this.initData);
@@ -54,6 +58,7 @@ namespace rskb.boardprovider
 
         public Card LoadCard(string id)
         {
+            _ts.TraceInformation("LoadCard: {0}", id);
             var board = this.Load_all_cards();
             var existing_card = board.First(c => c.Id == id);
             return existing_card;
@@ -61,6 +66,7 @@ namespace rskb.boardprovider
 
         public void StoreCard(Card card)
         {
+            _ts.TraceInformation("StoreCard: {0}", card.Id);
             var board = this.Load_all_cards().ToList();
             var existing_card = board.FirstOrDefault(c => c.Id == card.Id);
             if (existing_card == null)
