@@ -237,6 +237,18 @@ namespace rskb.boardportal
             {
                 this.On_refresh();
             }
+            else if (e.KeyData == (Keys.Control | Keys.Z))
+            {
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the btnUndo control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
         }
     }
 }
