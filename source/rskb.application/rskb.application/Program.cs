@@ -26,7 +26,7 @@ namespace rskb.application
             Application.SetCompatibleTextRenderingDefault(false);
 
             var portal = new BoardPortal();
-            var prov = new BoardProvider();
+            var prov = new PersistentBoardProvider("cards.xml");
             var board = new Board();
             var ctl = new boardcontroller.BoardController(board, prov, portal);
 
