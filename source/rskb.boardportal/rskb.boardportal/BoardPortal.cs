@@ -40,6 +40,11 @@ namespace rskb.boardportal
         public event Action<string, int> On_card_moved;
 
         /// <summary>
+        /// Occurs when a card is added.
+        /// </summary>
+        public event Action<string, int> On_new_card;
+
+        /// <summary>
         /// Displays the specified cards.
         /// </summary>
         /// <param name="cards">The cards collection.</param>
