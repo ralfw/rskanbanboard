@@ -41,7 +41,7 @@
             this.btnOk.Location = new System.Drawing.Point(342, 79);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 0;
+            this.btnOk.TabIndex = 1;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
             // 
@@ -52,7 +52,7 @@
             this.btnCancel.Location = new System.Drawing.Point(423, 79);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 1;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -72,7 +72,7 @@
             this.textBox1.Location = new System.Drawing.Point(12, 29);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(486, 20);
-            this.textBox1.TabIndex = 3;
+            this.textBox1.TabIndex = 0;
             // 
             // NewCardDialog
             // 
