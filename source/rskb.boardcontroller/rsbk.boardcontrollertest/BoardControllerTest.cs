@@ -11,10 +11,9 @@ namespace rsbk.boardcontroller
         [TestMethod]
         public void Move_Card_Test()
         {
-            IBoardProvider boardProvider = new BoardProviderMoc();
-            IBoardPortal bandPortal = new BoardPortalMoc();
-            IBoard board = new BoardMoc();
-            var boardController = new BoardController(board, boardProvider, bandPortal);
+            IBoardProvider2 boardProvider = new BoardProviderMoc();
+            IBoard2 board = new BoardMoc();
+            var boardController = new BoardController2(board, boardProvider);
             
             var cardId = "A";
             var cards = boardController.Move_card(cardId, 2);
