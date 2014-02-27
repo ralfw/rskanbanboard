@@ -51,11 +51,20 @@
     <Compile Include="BoardPortal.Designer.cs">
       <DependentUpon>BoardPortal.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewCardDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewCardDialog.Designer.cs">
+      <DependentUpon>NewCardDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BoardPortal.resx">
       <DependentUpon>BoardPortal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewCardDialog.resx">
+      <DependentUpon>NewCardDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
