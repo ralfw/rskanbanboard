@@ -57,6 +57,12 @@
     <Compile Include="BoardControllerTestMocs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\rskb.boardcontroller\rskb.boardcontroller.csproj">
+      <Project>{3ac585bf-d23c-4576-9a8c-caf54153f01f}</Project>
+      <Name>rskb.boardcontroller</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
