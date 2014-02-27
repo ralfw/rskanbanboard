@@ -9,7 +9,7 @@ namespace rskb.boardprovider
 {
     public class BoardProvider : IBoardProvider
     {
-        private IEnumerable<Card> board = new List<Card>()
+        private List<Card> board = new List<Card>()
                                           {
                                               new Card() { ColumnIndex = 0, Id = "0", Text = "A" },
                                               new Card() { ColumnIndex = 0, Id = "1", Text = "B" },
@@ -24,17 +24,32 @@ namespace rskb.boardprovider
 
         public IEnumerable<Card> Load_all_cards()
         {
-            return this.board;
+            return this.board.Select(CopyCard);
         }
 
         public Card LoadCard(string id)
         {
-            return board.First(c => c.Id == id);
+            var existing_card = board.First(c => c.Id == id);
+            return CopyCard(existing_card);
+        }
+
+        private static Card CopyCard(Card existing_card)
+        {
+            return new Card() { ColumnIndex = existing_card.ColumnIndex, Id = existing_card.Id, Text = existing_card.Text };
         }
 
         public void StoreCard(Card card)
         {
-            // nix.
+            var existing_card = board.FirstOrDefault(c => c.Id == card.Id);
+            if (existing_card == null)
+            {
+                this.board.Add(card);
+            }
+            else
+            {
+                existing_card.ColumnIndex = card.ColumnIndex;
+                existing_card.Text = card.Text;
+            }
         }
     }
 }

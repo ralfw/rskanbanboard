@@ -26,7 +26,7 @@ namespace rskb.BoardProviderTest
             var board = provider.Load_all_cards();
             var expected = board.First();
             var actual = provider.LoadCard(expected.Id);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.Id, actual.Id);
         }
 
         [TestMethod]
@@ -49,10 +49,10 @@ namespace rskb.BoardProviderTest
             provider.StoreCard(expected);
             var new_board = provider.Load_all_cards();
             var card_from_board = new_board.Single(c => c.Id == expected.Id);
-            Assert.AreEqual(expected, card_from_board);
+            Assert.AreEqual(expected.Id, card_from_board.Id);
 
             var loaded_card = provider.LoadCard(expected.Id);
-            Assert.AreEqual(expected, loaded_card);
+            Assert.AreEqual(expected.Id, loaded_card.Id);
         }
 
         [TestMethod]
