@@ -59,8 +59,8 @@ namespace rskb.boardprovider
                         };
             foreach (var card in board)
             {
-                this.blackBox.Record("CardAdded", card.Id, card.Text);
-                this.blackBox.Record("CardMoved", card.Id, card.ColumnIndex.ToString());
+                this.blackBox.Record(new CardAdded(card.Id, card.Text));
+                this.blackBox.Record(new CardMoved(card.Id, card.ColumnIndex));
             }
         }
     }

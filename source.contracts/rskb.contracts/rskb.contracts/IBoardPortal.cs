@@ -8,5 +8,6 @@ namespace rskb.contracts
         void Display_cards(IEnumerable<Card> cards);
 
         event Action<string, int> On_card_moved;
+        event Action<string, int> On_new_card;
     }
 }

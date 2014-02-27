@@ -19,7 +19,7 @@ namespace rskb.board
 
         public void Move_card_to_column(String cardId, int destinationColumnIndex)
         {
-            this.blackBox.Record("CardMoved", cardId, destinationColumnIndex.ToString());
+            this.blackBox.Record(new CardMoved(cardId, destinationColumnIndex));
         }
     }
 }
