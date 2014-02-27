@@ -32,6 +32,10 @@ namespace rskb.boardportal
                 this.treeViewQs,
                 this.treeViewDone
             };
+
+            // prepare the environment to handle "f5" for refreshing
+            this.KeyPreview = true;
+            this.KeyDown += BoardPortal_KeyDown;
         }
 
         /// <summary>
@@ -218,6 +222,21 @@ namespace rskb.boardportal
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             this.On_refresh();
+        }
+
+        /// <summary>
+        /// Handles the KeyDown event of the BoardPortal control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        void BoardPortal_KeyDown(object sender, KeyEventArgs e)
+        {
+            // refresh on F5
+            if (e.KeyCode == Keys.F5)
+            {
+                this.On_refresh();
+            }
         }
     }
 }
