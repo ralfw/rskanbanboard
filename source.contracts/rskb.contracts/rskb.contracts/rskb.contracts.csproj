@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nblackbox">
+      <HintPath>..\..\..\lib\nblackbox.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="events\CardAdded.cs" />
+    <Compile Include="events\CardMoved.cs" />
     <Compile Include="IBoard2.cs" />
     <Compile Include="IBoardProvider2.cs" />
     <Compile Include="IBoard.cs" />

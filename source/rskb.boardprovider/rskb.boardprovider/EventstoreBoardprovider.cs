@@ -13,7 +13,7 @@ namespace rskb.boardprovider
     public class EventstoreBoardprovider : IBoardProvider2
     {
         private readonly TraceSource _ts = new TraceSource("rskb.boardprovider", SourceLevels.All);
-        private IBlackBox blackBox;
+        private readonly IBlackBox blackBox;
 
         public EventstoreBoardprovider(IBlackBox blackBox)
         {
