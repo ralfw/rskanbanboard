@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBoard2.cs" />
+    <Compile Include="IBoardProvider2.cs" />
     <Compile Include="IBoard.cs" />
     <Compile Include="IBoardController.cs" />
     <Compile Include="IBoardPortal.cs" />

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using nblackbox;
 using rskb.board;
 using rskb.boardportal;
 using rskb.boardprovider;
@@ -26,9 +27,10 @@ namespace rskb.application
             Application.SetCompatibleTextRenderingDefault(false);
 
             var portal = new BoardPortal();
-            var prov = new PersistentBoardProvider("cards.xml");
-            var board = new Board();
-            var ctl = new boardcontroller.BoardController(board, prov, portal);
+            var blackBox = new FileBlackBox("CardStore");
+            var prov = new EventstoreBoardprovider(blackBox);
+            var board = new Board2(blackBox);
+            var ctl = new boardcontroller.BoardController2(board, prov, portal);
 
             ts.TraceInformation("Bind");
             portal.On_card_moved += (id, index) => {
@@ -44,7 +46,7 @@ namespace rskb.application
         }
 
 
-        private static void Start(IBoardProvider prov, IBoardPortal portal)
+        private static void Start(IBoardProvider2 prov, IBoardPortal portal)
         {
             var cards = prov.Load_all_cards();
             portal.Display_cards(cards);

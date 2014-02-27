@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nblackbox">
+      <HintPath>..\packages\nblackbox.1.0.5.0\lib\net45\nblackbox.dll</HintPath>
+    </Reference>
     <Reference Include="rskb.contracts">
       <HintPath>..\..\..\bin.contracts\rskb.contracts.dll</HintPath>
     </Reference>
@@ -54,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BoardProviderTest.cs" />
+    <Compile Include="EventStoreBoardProviderTest.cs" />
     <Compile Include="PersistentBoardProviderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +66,9 @@
       <Project>{4eeeaf37-69ee-439f-82d3-904639d31202}</Project>
       <Name>rskb.boardprovider</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
