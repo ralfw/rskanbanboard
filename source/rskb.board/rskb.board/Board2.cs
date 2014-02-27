@@ -21,5 +21,12 @@ namespace rskb.board
         {
             this.blackBox.Record(new CardMoved(cardId, destinationColumnIndex));
         }
-    }
+
+        public void Create_card(string text, int columnIndex)
+        {
+            string id = Guid.NewGuid().ToString();
+            this.blackBox.Record(new CardAdded(id, text));
+            this.blackBox.Record(new CardMoved(id, columnIndex));
+        }
+}
 }
