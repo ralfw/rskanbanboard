@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace rsbk.boardcontroller
 {
+    using System.Diagnostics.CodeAnalysis;
+
     using rskb.contracts;
 
     /// <summary>
@@ -15,12 +17,10 @@ namespace rsbk.boardcontroller
     {
         public void Create_card(string text, int columnIndex)
         {
-            throw new NotImplementedException();
         }
 
         public void Move_card_to_column(string cardId, int destinationColumnIndex)
         {
-            throw new NotImplementedException();
         }
     }
 
@@ -40,15 +40,6 @@ namespace rsbk.boardcontroller
         public IEnumerable<Card> Load_all_cards()
         {
             return cards;
-        }
-
-        public Card LoadCard(string id)
-        {
-            return cards.First(c => c.Id == id);
-        }
-
-        public void StoreCard(Card card)
-        {
         }
     }
 }
