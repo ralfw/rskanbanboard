@@ -13,36 +13,40 @@ namespace rskb.board
     [TestClass]
     public class Board2Test
     {
-        private const string BlackBoxDir = "BlackBox";
+        private const string BlackBoxDir = "UnitTestBlackBox";
 
         [TestMethod]
         public void TestCreateBoard2()
         {
             this.DeleteBlackBox();
-            FileBlackBox blackBox = new FileBlackBox(BlackBoxDir);
-            Board2 target = new Board2(blackBox);
+            using (FileBlackBox blackBox = new FileBlackBox(BlackBoxDir))
+            {
+                Board2 target = new Board2(blackBox);
 
-            target.Create_card("Test card", 1);
-            var events = blackBox.Player.Play();
+                target.Create_card("Test card", 1);
+                var events = blackBox.Player.Play();
 
-            Assert.AreEqual(2, events.Count());
+                Assert.AreEqual(2, events.Count());
+            }
         }
 
         [TestMethod]
         public void TestMoveBoard2()
         {
             this.DeleteBlackBox();
-            FileBlackBox blackBox = new FileBlackBox(BlackBoxDir);
-            Board2 target = new Board2(blackBox);
+            using (FileBlackBox blackBox = new FileBlackBox(BlackBoxDir))
+            {
+                Board2 target = new Board2(blackBox);
 
-            target.Create_card("Test card", 1);
-            var events = blackBox.Player.Play();
-            IRecordedEvent ev = events.First();
-            string id = ev.Context;
+                target.Create_card("Test card", 1);
+                var events = blackBox.Player.Play();
+                IRecordedEvent ev = events.First();
+                string id = ev.Context;
 
-            target.Move_card_to_column(id, 2);
-            events = blackBox.Player.Play();
-            Assert.AreEqual(3, events.Count());
+                target.Move_card_to_column(id, 2);
+                events = blackBox.Player.Play();
+                Assert.AreEqual(3, events.Count());
+            }
         }
 
         private void DeleteBlackBox()
