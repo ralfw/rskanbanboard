@@ -14,7 +14,6 @@ namespace rskb.boardcontroller
     {
         private readonly IBoard2 _board;
         private readonly IBoardProvider2 _provider;
-        private readonly IBoardPortal _portal;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BoardController"/> class.
@@ -32,7 +31,6 @@ namespace rskb.boardcontroller
         {
             this._board = board;
             this._provider = provider;
-            this._portal = portal;
         }
 
         /// <summary>
@@ -51,6 +49,11 @@ namespace rskb.boardcontroller
         {
             _board.Move_card_to_column(cardId, destinationColumnIndex);
             return _provider.Load_all_cards();
+        }
+
+        public IEnumerable<Card> Create_card(string text, int columnIndex)
+        {
+            throw new NotImplementedException();
         }
     }
 }
