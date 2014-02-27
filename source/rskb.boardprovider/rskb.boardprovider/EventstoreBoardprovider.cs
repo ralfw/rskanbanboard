@@ -23,6 +23,13 @@ namespace rskb.boardprovider
         public IEnumerable<Card> Load_all_cards()
         {
             var allEvents = this.blackBox.Player.Play();
+
+            if (!allEvents.Any())
+            {
+                this.CreateDefaultEvents();
+                allEvents = this.blackBox.Player.Play();
+            }
+
             var board = new Dictionary<String, Card>();
             foreach (var e in allEvents)
             {
@@ -38,6 +45,23 @@ namespace rskb.boardprovider
             }
 
             return board.Values;
+        }
+
+        private void CreateDefaultEvents()
+        {
+            var board = new List<Card>()
+                        {
+                            new Card() { ColumnIndex = 0, Id = "0", Text = "A" }, new Card() { ColumnIndex = 0, Id = "1", Text = "B" },
+                            new Card() { ColumnIndex = 0, Id = "2", Text = "C" }, new Card() { ColumnIndex = 1, Id = "3", Text = "D" },
+                            new Card() { ColumnIndex = 1, Id = "4", Text = "E" }, new Card() { ColumnIndex = 2, Id = "5", Text = "F" },
+                            new Card() { ColumnIndex = 3, Id = "6", Text = "G" }, new Card() { ColumnIndex = 3, Id = "7", Text = "H" },
+                            new Card() { ColumnIndex = 3, Id = "8", Text = "I" },
+                        };
+            foreach (var card in board)
+            {
+                this.blackBox.Record("CardAdded", card.Id, card.Text);
+                this.blackBox.Record("CardMoved", card.Id, card.ColumnIndex.ToString());
+            }
         }
     }
 }
