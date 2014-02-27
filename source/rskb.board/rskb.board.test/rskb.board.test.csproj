@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nblackbox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bin.contracts\nblackbox.dll</HintPath>
+    </Reference>
     <Reference Include="rskb.contracts">
       <HintPath>..\..\..\bin.contracts\rskb.contracts.dll</HintPath>
     </Reference>
@@ -54,6 +58,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BoardTest.cs" />
+    <Compile Include="Board2Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
