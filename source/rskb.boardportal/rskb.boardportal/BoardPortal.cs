@@ -204,5 +204,14 @@ namespace rskb.boardportal
 
             this.On_new_card(dlg.Description, columnIndex);
         }
+
+        /// <summary>
+        /// Handles the Click event of the button5 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
