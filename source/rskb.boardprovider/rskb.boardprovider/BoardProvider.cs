@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace rskb.boardprovider
 {
     public class BoardProvider : IBoardProvider
     {
+        private readonly TraceSource _ts = new TraceSource("rskb.boardprovider", SourceLevels.All);
+
         private List<Card> board = new List<Card>()
                                           {
                                               new Card() { ColumnIndex = 0, Id = "0", Text = "A" },
@@ -24,11 +27,13 @@ namespace rskb.boardprovider
 
         public IEnumerable<Card> Load_all_cards()
         {
+            _ts.TraceInformation("Load_all_cards");
             return this.board.Select(CopyCard);
         }
 
         public Card LoadCard(string id)
         {
+            _ts.TraceInformation("LoadCard: {0}", id);
             var existing_card = board.First(c => c.Id == id);
             return CopyCard(existing_card);
         }
@@ -40,6 +45,8 @@ namespace rskb.boardprovider
 
         public void StoreCard(Card card)
         {
+            _ts.TraceInformation("StoreCard: {0}", card.Id);
+
             var existing_card = board.FirstOrDefault(c => c.Id == card.Id);
             if (existing_card == null)
             {

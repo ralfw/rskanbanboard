@@ -20,7 +20,7 @@ namespace rskb.application
         static void Main()
         {
             var ts = new TraceSource("rskb.application", SourceLevels.All);
-            ts.TraceInformation("Build/Bind");
+            ts.TraceInformation("Build");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -29,6 +29,12 @@ namespace rskb.application
             var prov = new BoardProvider();
             var board = new Board();
             var ctl = new boardcontroller.BoardController(board, prov, portal);
+
+            ts.TraceInformation("Bind");
+            portal.On_card_moved += (id, index) => {
+                var all_cards = ctl.Move_card(id, index);
+                portal.Display_cards(all_cards);
+            };
 
             ts.TraceInformation("Run");
             Start(prov, portal);

@@ -16,8 +16,8 @@ namespace rsbk.boardcontroller
             IBoard board = new BoardMoc();
             var boardController = new BoardController(board, boardProvider, bandPortal);
             
-            String cardId = "A";
-            //// boardcontroller.Move_card(cardId, 2);
+            var cardId = "A";
+            boardController.Move_card(cardId, 2);
             var card = boardProvider.LoadCard("A");
 
             Assert.AreEqual(card.ColumnIndex, 2, "columIndex is incorrect");
