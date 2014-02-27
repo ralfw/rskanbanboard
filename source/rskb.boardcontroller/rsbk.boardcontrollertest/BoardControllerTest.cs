@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using rskb.boardcontroller;
 using rskb.contracts;
@@ -17,8 +17,8 @@ namespace rsbk.boardcontroller
             var boardController = new BoardController(board, boardProvider, bandPortal);
             
             var cardId = "A";
-            boardController.Move_card(cardId, 2);
-            var card = boardProvider.LoadCard("A");
+            var cards = boardController.Move_card(cardId, 2);
+            var card = cards.First(c => c.Id == "A");
 
             Assert.AreEqual(card.ColumnIndex, 2, "columIndex is incorrect");
         }
