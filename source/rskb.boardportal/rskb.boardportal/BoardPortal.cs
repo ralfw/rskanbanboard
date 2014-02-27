@@ -45,6 +45,11 @@ namespace rskb.boardportal
         public event Action<string, int> On_new_card;
 
         /// <summary>
+        /// Occurs when the UI has to be refreshed.
+        /// </summary>
+        public event Action On_refresh;
+
+        /// <summary>
         /// Displays the specified cards.
         /// </summary>
         /// <param name="cards">The cards collection.</param>
@@ -212,6 +217,7 @@ namespace rskb.boardportal
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            this.On_refresh();
         }
     }
 }
