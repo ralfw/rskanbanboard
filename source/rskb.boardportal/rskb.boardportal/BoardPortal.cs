@@ -136,26 +136,12 @@ namespace rskb.boardportal
         /// <param name="e">The <see cref="DragEventArgs"/> instance containing the event data.</param>
         private void treeView_DragDrop(object sender, DragEventArgs e)
         {
-            if (!e.Data.GetDataPresent(typeof(TreeNode)))
-            {
-                return;
-            }
+            if (!e.Data.GetDataPresent(typeof (TreeNode))) return;
 
-            // collect information
-            TreeNode draggedNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
-            TreeView targetTreeView = sender as TreeView;
+            var draggedNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
+            var targetTreeView = sender as TreeView;
 
-            // remove from source view
-            draggedNode.Remove();
-
-            // add to target view
-            targetTreeView.Nodes.Add(draggedNode);
-
-            // fire the event
-            if (this.On_card_moved != null)
-            {
-                this.On_card_moved(draggedNode.Tag.ToString(), this.treeViews.IndexOf(targetTreeView));
-            }
+            this.On_card_moved(draggedNode.Tag.ToString(), this.treeViews.IndexOf(targetTreeView));
         }
     }
 }
