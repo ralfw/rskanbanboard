@@ -21,7 +21,7 @@ namespace rskb.boardportal.Tests
 
             for(int i = 0; i< 15; i++)
             {
-                Card cardToAdd = new Card() { ColumnIndex = i / 4, Id = i.ToString(), Text = "Card \n wwwwwwwwwwwwww " + i.ToString()};
+                Card cardToAdd = new Card() { ColumnIndex = i / 4, Id = i.ToString(), Text = "Card \n wwwwwwwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwwwwwwww " + i.ToString()};
                 cards.Add(cardToAdd); 
             }
 

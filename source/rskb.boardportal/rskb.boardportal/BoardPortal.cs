@@ -13,8 +13,14 @@ namespace rskb.boardportal
 {
     public partial class BoardPortal : Form, IBoardPortal
     {
+        /// <summary>
+        /// Tcollection holding references on the tree-views in the correct order
+        /// </summary>
         List<TreeView> treeViews = null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BoardPortal"/> class.
+        /// </summary>
         public BoardPortal()
         {
             this.InitializeComponent();
@@ -28,8 +34,15 @@ namespace rskb.boardportal
             };
         }
 
+        /// <summary>
+        /// Occurs when a card is moved.
+        /// </summary>
         public event Action<string, int> On_card_moved;
 
+        /// <summary>
+        /// Displays the specified cards.
+        /// </summary>
+        /// <param name="cards">The cards collection.</param>
         public void Display_cards(IEnumerable<Card> cards)
         {
             if (cards == null)
@@ -37,30 +50,29 @@ namespace rskb.boardportal
                 return;
             }
 
-            this.ClearTreeViews();
+            // reset theUI
+            this.ResetUI();
 
+            // add the cards to the tree-view
             foreach (var card in cards)
             {
-                if (card.ColumnIndex == 0)
+                try
                 {
-                    this.AddCardToList(card, this.treeViewNext);
+                    // the column index corresponds to the index of the corresponding tree-view in the local tree-views list
+                    this.AddCardToList(card, this.treeViews[card.ColumnIndex]);
                 }
-                else if (card.ColumnIndex == 1)
+                catch (IndexOutOfRangeException ex)
                 {
-                    this.AddCardToList(card, this.treeViewProgress);
-                }
-                else if (card.ColumnIndex == 2)
-                {
-                    this.AddCardToList(card, this.treeViewQs);
-                }
-                else
-                {
-                    this.AddCardToList(card, this.treeViewDone);
+                    // ToDo: error handling is to be defined
+                    Console.WriteLine("the column index is out-of range");
                 }
             }
         }
 
-        private void ClearTreeViews()
+        /// <summary>
+        /// Resets the UI.
+        /// </summary>
+        private void ResetUI()
         {
             foreach (TreeView tv in this.treeViews)
             {
@@ -68,17 +80,34 @@ namespace rskb.boardportal
             }
         }
 
+        /// <summary>
+        /// Adds the card to the corresponding tree-view.
+        /// </summary>
+        /// <param name="card">The card.</param>
+        /// <param name="treeView">The tree view.</param>
         private void AddCardToList(Card card, TreeView treeView)
         {
             TreeNode addedNode = treeView.Nodes.Add(card.Text);
+
+            // the ID is handled buy the mean of the node's Tag
             addedNode.Tag = card.Id;
         }
 
+        /// <summary>
+        /// Handles the ItemDrag event of the treeView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ItemDragEventArgs"/> instance containing the event data.</param>
         private void treeView_ItemDrag(object sender, ItemDragEventArgs e)
         {
             this.DoDragDrop(e.Item, DragDropEffects.Move);
         }
 
+        /// <summary>
+        /// Handles the DragOver event of the treeView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DragEventArgs"/> instance containing the event data.</param>
         private void treeView_DragOver(object sender, DragEventArgs e)
         {
             // handle only tree nodes
@@ -87,6 +116,7 @@ namespace rskb.boardportal
                 return;
             }
 
+            // drag & drop only items that are defined within the UI
             TreeNode draggedNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
             if (draggedNode.TreeView != this.treeViewDone &&
                 draggedNode.TreeView != this.treeViewNext &&
@@ -99,6 +129,11 @@ namespace rskb.boardportal
             e.Effect = DragDropEffects.Move;
         }
 
+        /// <summary>
+        /// Handles the DragDrop event of the treeView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DragEventArgs"/> instance containing the event data.</param>
         private void treeView_DragDrop(object sender, DragEventArgs e)
         {
             if (!e.Data.GetDataPresent(typeof(TreeNode)))
@@ -106,6 +141,7 @@ namespace rskb.boardportal
                 return;
             }
 
+            // collect information
             TreeNode draggedNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
             TreeView targetTreeView = sender as TreeView;
 
@@ -115,6 +151,7 @@ namespace rskb.boardportal
             // add to target view
             targetTreeView.Nodes.Add(draggedNode);
 
+            // fire the event
             if (this.On_card_moved != null)
             {
                 this.On_card_moved(draggedNode.Tag.ToString(), this.treeViews.IndexOf(targetTreeView));

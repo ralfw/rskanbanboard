@@ -41,6 +41,7 @@
             // treeViewNext
             // 
             this.treeViewNext.AllowDrop = true;
+            this.treeViewNext.ItemHeight = 32;
             this.treeViewNext.Location = new System.Drawing.Point(13, 61);
             this.treeViewNext.Name = "treeViewNext";
             this.treeViewNext.ShowPlusMinus = false;
@@ -54,6 +55,7 @@
             // treeViewProgress
             // 
             this.treeViewProgress.AllowDrop = true;
+            this.treeViewProgress.ItemHeight = 32;
             this.treeViewProgress.Location = new System.Drawing.Point(240, 61);
             this.treeViewProgress.Name = "treeViewProgress";
             this.treeViewProgress.ShowPlusMinus = false;
@@ -67,6 +69,7 @@
             // treeViewQs
             // 
             this.treeViewQs.AllowDrop = true;
+            this.treeViewQs.ItemHeight = 32;
             this.treeViewQs.Location = new System.Drawing.Point(506, 61);
             this.treeViewQs.Name = "treeViewQs";
             this.treeViewQs.ShowPlusMinus = false;
@@ -80,6 +83,7 @@
             // treeViewDone
             // 
             this.treeViewDone.AllowDrop = true;
+            this.treeViewDone.ItemHeight = 32;
             this.treeViewDone.Location = new System.Drawing.Point(769, 61);
             this.treeViewDone.Name = "treeViewDone";
             this.treeViewDone.ShowPlusMinus = false;
@@ -139,7 +143,8 @@
             this.Controls.Add(this.treeViewQs);
             this.Controls.Add(this.treeViewProgress);
             this.Controls.Add(this.treeViewNext);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "BoardPortal";
             this.Text = "BoardPortal";
             this.ResumeLayout(false);
