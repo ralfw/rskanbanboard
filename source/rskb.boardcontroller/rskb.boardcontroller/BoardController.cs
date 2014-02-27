@@ -49,10 +49,10 @@ namespace rskb.boardcontroller
         /// </returns>
         public IEnumerable<Card> Move_card(string cardId, int destinationColumnIndex)
         {
-            var card = _provider.LoadCard(cardId);
-            card = _board.Move_card_to_column(card, destinationColumnIndex);
-            _provider.StoreCard(card);
-            return _provider.Load_all_cards();
+            var card = this._provider.LoadCard(cardId);
+            card = this._board.Move_card_to_column(card, destinationColumnIndex);
+            this._provider.StoreCard(card);
+            return this._provider.Load_all_cards();
         }
     }
 }
