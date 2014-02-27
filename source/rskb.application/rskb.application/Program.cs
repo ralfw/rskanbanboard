@@ -31,7 +31,8 @@ namespace rskb.application
             di.RegisterSingle<IBlackBox>(() => new FileBlackBox("CardStore"));
             di.RegisterSingle(typeof (IBoardPortal), typeof (BoardPortal));
             di.RegisterSingle(typeof(IBoardProvider2), typeof(EventstoreBoardprovider));
-            di.RegisterSingle(typeof (IBoardController), typeof (BoardController));
+            di.RegisterSingle(typeof(IBoard2), typeof(Board2));
+            di.RegisterSingle(typeof (IBoardController), typeof (BoardController2));
 
             var prov = di.GetInstance<IBoardProvider2>();
             var portal = di.GetInstance<IBoardPortal>();

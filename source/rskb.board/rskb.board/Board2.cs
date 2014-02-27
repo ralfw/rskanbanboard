@@ -10,7 +10,7 @@ namespace rskb.board
 {
     public class Board2 : IBoard2
     {
-        private IBlackBox blackBox;
+        private readonly IBlackBox blackBox;
 
         public Board2(IBlackBox blackBox)
         {
