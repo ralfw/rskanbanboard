@@ -22,12 +22,13 @@ namespace rskb.boardprovider
 
         public IEnumerable<Card> Load_all_cards()
         {
-            var allEvents = this.blackBox.Player.Play();
+            _ts.TraceInformation("Load_all_cards");
+            var allEvents = this.blackBox.Player.Play().ToArray();
 
             if (!allEvents.Any())
             {
                 this.CreateDefaultEvents();
-                allEvents = this.blackBox.Player.Play();
+                allEvents = this.blackBox.Player.Play().ToArray();
             }
 
             var board = new Dictionary<String, Card>();
@@ -44,11 +45,13 @@ namespace rskb.boardprovider
                 }
             }
 
+            _ts.TraceInformation("Loaded {0} cards from {1} events", board.Count, allEvents.Length);
             return board.Values;
         }
 
         private void CreateDefaultEvents()
         {
+            _ts.TraceInformation("CreateDefaultEvents");
             var board = new List<Card>()
                         {
                             new Card() { ColumnIndex = 0, Id = "0", Text = "A" }, new Card() { ColumnIndex = 0, Id = "1", Text = "B" },

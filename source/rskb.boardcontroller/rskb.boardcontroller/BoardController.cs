@@ -54,5 +54,10 @@ namespace rskb.boardcontroller
             this._provider.StoreCard(card);
             return this._provider.Load_all_cards();
         }
+
+        public IEnumerable<Card> Create_card(string text, int columnIndex)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
