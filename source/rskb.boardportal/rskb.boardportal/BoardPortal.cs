@@ -13,9 +13,19 @@ namespace rskb.boardportal
 {
     public partial class BoardPortal : Form, IBoardPortal
     {
+        List<TreeView> treeViews = null;
+
         public BoardPortal()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            this.treeViews = new List<TreeView>()
+            {
+                this.treeViewNext,
+                this.treeViewProgress,
+                this.treeViewQs,
+                this.treeViewDone
+            };
         }
 
         public event Action<string, int> On_card_moved;
@@ -26,6 +36,8 @@ namespace rskb.boardportal
             {
                 return;
             }
+
+            this.ClearTreeViews();
 
             foreach (var card in cards)
             {
@@ -45,6 +57,14 @@ namespace rskb.boardportal
                 {
                     this.AddCardToList(card, this.treeViewDone);
                 }
+            }
+        }
+
+        private void ClearTreeViews()
+        {
+            foreach (TreeView tv in this.treeViews)
+            {
+                tv.Nodes.Clear();
             }
         }
 
@@ -88,8 +108,17 @@ namespace rskb.boardportal
 
             TreeNode draggedNode = e.Data.GetData(typeof(TreeNode)) as TreeNode;
             TreeView targetTreeView = sender as TreeView;
+
+            // remove from source view
             draggedNode.Remove();
+
+            // add to target view
             targetTreeView.Nodes.Add(draggedNode);
+
+            if (this.On_card_moved != null)
+            {
+                this.On_card_moved(draggedNode.Tag.ToString(), this.treeViews.IndexOf(targetTreeView));
+            }
         }
     }
 }
