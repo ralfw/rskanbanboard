@@ -202,7 +202,7 @@ namespace rskb.boardportal
                 return;
             }
 
-            this.On_new_card(dlg.Text, columnIndex);
+            this.On_new_card(dlg.Description, columnIndex);
         }
     }
 }
