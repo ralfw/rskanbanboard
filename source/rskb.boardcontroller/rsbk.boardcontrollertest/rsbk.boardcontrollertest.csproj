@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BoardControllerTest.cs" />
+    <Compile Include="BoardControllerTestMocs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Choose>
