@@ -18,7 +18,7 @@ namespace rsbk.boardcontroller
             
             var cardId = "A";
             var cards = boardController.Move_card(cardId, 2);
-            var card = cards.First(c => c.Id == "A");
+            var card = cards.First(c => c.Id == cardId);
 
             Assert.AreEqual(card.ColumnIndex, 2, "columIndex is incorrect");
         }
