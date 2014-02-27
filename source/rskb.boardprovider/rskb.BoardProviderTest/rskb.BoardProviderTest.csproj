@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BoardProviderTest.cs" />
+    <Compile Include="PersistentBoardProviderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
